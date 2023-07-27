@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 1334919732da4fc692623f54205ed6f507c07565
+  revision: c9a104008fbfaf6cee9cfc4010b1d8962e3a6caa
   branch: main
   specs:
     actioncable (7.1.0.alpha)
@@ -181,9 +181,9 @@ GEM
       nokogiri (~> 1.14)
     rake (13.0.6)
     regexp_parser (2.8.1)
-    reline (0.3.6)
+    reline (0.3.7)
       io-console (~> 0.5)
-    rexml (3.2.5)
+    rexml (3.2.6)
     rubyzip (2.3.2)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
