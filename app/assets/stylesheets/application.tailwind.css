@@ -1,0 +1,17 @@
+
+@import 'actiontext.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+trix-editor { @apply prose max-w-none }
+
+.trix-content pre {
+    background-color:#1f2937;
+  }
+
+#post_title {
+    border-radius: 3px;
+    border-color: #bbb;
+}
+  
