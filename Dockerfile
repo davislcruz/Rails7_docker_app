@@ -21,6 +21,9 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git libvips node-gyp pkg-config python-is-python3
 
+# Install ssh client needed for @tailwind/typography
+Run apt-get install -y openssh-client
+
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.5.0
 ARG YARN_VERSION=1.22.19
@@ -39,7 +42,26 @@ RUN bundle install && \
 
 # Install node modules
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+
+# Run ssh-agent (inside the build environment)
+CMD eval "$(ssh-agent -s)"
+
+# Add ssh private key into container
+ARG SSH_PRIVATE_KEY
+RUN mkdir ~/.ssh/
+## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+## We're using tr to fix line endings which makes ed25519 keys work
+## without extra base64 encoding.
+## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+CMD echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+RUN echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_ed25519
+RUN chmod 600 ~/.ssh/id_ed25519
+
+# download public key for github
+RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+#Install nodes modules from private or public repo throught ssh
+RUN --mount=type=ssh yarn install --frozen-lockfile
 
 # Copy application code
 COPY . .
