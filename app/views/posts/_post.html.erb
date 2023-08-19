@@ -1,12 +1,20 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
-
-  <div>
-    <strong>body:</strong>
-    <%= post.body %>
+<article id="<%= dom_id post %>" class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-20">
+  <div class="text-center mt-12">
+    <h3 class="text-4xl font-semibold leading-normal mb-2 text-slate-700 mb-2 capitalize"><strong><%= post.title %></strong></h3>
+    <p class="text-sm leading-normal mt-0 mb-2 text-slate-400 font-bold uppercase">
+      posted on <%= post.created_at.strftime(" %b #{post.created_at.day.ordinalize} %Y") %>
+    </p>
   </div>
-
-</div>
+  <div class="mt-10 py-10 border-t border-slate-200 text-center">
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full lg:w-9/12 px-4">
+        <p class="mb-4 text-lg leading-relaxed text-slate-700">
+          <%= post.body %>
+        </p>
+        <button type="button">
+          <%= link_to 'Show This Post', post, class: 'text-indigo-500 border border-indigo-500 hover:bg-indigo-500 hover:text-white active:bg-indigo-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150' %>
+        </button>
+      </div>
+    </div>
+  </div>
+</article>

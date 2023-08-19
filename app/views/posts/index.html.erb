@@ -1,14 +1,8 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<div id="posts">
+<div id="posts" class="text-center mt-12 font-semibold leading-normal text-slate-700 mb-2 capitalize">
+  <h1>Software</h1>
+  <%= link_to "New post", new_post_path %>
   <% @posts.each do |post| %>
     <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New post", new_post_path %>

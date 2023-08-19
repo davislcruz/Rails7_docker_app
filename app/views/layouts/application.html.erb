@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rails7DockerApp</title>
+    <title>daviscruz.com</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script src="https://kit.fontawesome.com/a1ff8f1340.js" crossorigin="anonymous"></script>
   </head>
-
-  <body class = "prose max-w-none">
-    <%= yield %>
+  <body class="text-slate-700 antialiased">
+    <%= render "layouts/navbar" %>
+    <main class="prose lg:prose-md max-w-none">
+      <%= render "layouts/header" %>
+      <section class="relative py-16 bg-slate-200">
+        <div class="container mx-auto px-4">
+          <%= yield %>
+        </div>
+      </section>
+      <%= render "layouts/footer"%>
+    </main>
   </body>
 </html>

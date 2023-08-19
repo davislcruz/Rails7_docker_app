@@ -14,4 +14,8 @@ trix-editor { @apply prose max-w-none }
     border-radius: 3px;
     border-color: #bbb;
 }
+
+.prose a {
+  text-decoration: none;
+}
   
